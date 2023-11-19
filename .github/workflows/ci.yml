@@ -20,6 +20,9 @@ jobs:
       with:
         node-version: 18
     
+    - name: Install Dependencies
+      run: npm ci
+      
     - name: Lint with ESlint
       run: npm run lint
     
