@@ -6,7 +6,7 @@ export interface ApiResponse {
 }
 
 export interface ApiError {
-  source?: { pointer: string};
+  source?: { pointer: string };
   title?: string;
   detail: string;
 }
@@ -17,6 +17,6 @@ export interface ApiData {
 }
 
 export type CustomErrorContent = {
-  message: string,
-  context?: { [key: string]: any }
+  message: string;
+  context?: { [key: string]: any };
 };

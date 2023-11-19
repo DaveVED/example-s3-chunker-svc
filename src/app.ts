@@ -1,6 +1,6 @@
 import express from "express";
 import healthRoutes from "./routes/healthRoutes";
-import errorHandler from './middleware/errorHanlder';
+import errorHandler from "./middleware/errorHanlder";
 const app = express();
 
 app.use(express.json());

@@ -6,8 +6,8 @@ export const status = async (): Promise<HeatlhStatus> => {
     status: "UP",
     version: "v1",
     releaseId: "0.1.0",
-    description: "Health of chunker service."
+    description: "Health of chunker service.",
   };
 
   return healthStatus;
-}
+};

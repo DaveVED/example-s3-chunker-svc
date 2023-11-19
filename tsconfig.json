@@ -9,6 +9,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-"indluce": ["src/**/*.ts","jest.config.ts"],
-"exclude": ["node_modules"]
+  "indluce": ["src/**/*.ts", "jest.config.ts"],
+  "exclude": ["node_modules"]
 }
