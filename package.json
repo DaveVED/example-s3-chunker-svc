@@ -11,7 +11,7 @@
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json|md)\""
   },
   "lint-staged": {
-    "*{ts}": [
+    "*ts": [
       "eslint --fix",
       "prettier --write"
     ],
