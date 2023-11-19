@@ -4,6 +4,7 @@
   "description": "Chunk &amp; store files in s3.",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "dev:server": "nodemon src/server.ts",
     "test": "jest --coverage",
     "prepare": "husky install",
@@ -32,7 +33,6 @@
     "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "husky": "^8.0.0",
     "jest": "^29.7.0",
     "lint-staged": "^15.1.0",
     "nodemon": "^3.0.1",
@@ -45,6 +45,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "http-status-codes": "^2.3.0",
-    "winston": "^3.11.0"
+    "winston": "^3.11.0",
+    "husky": "^8.0.0"
   }
 }
