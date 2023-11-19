@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { ApiResponse } from "../types/Response";
 import { CustomError } from "../util/errors";
+import { logger } from "../util/logger";
 
 export const errorHandler = (
   error: Error,
@@ -12,7 +13,7 @@ export const errorHandler = (
   if (error instanceof CustomError) {
     const { statusCode, errors, logging } = error;
     if (logging) {
-      console.error(
+      logger.error(
         JSON.stringify(
           {
             code: error.statusCode,
@@ -32,7 +33,7 @@ export const errorHandler = (
     res.status(statusCode).send(response);
   }
 
-  console.error(JSON.stringify(error, null, 2));
+  logger.error(JSON.stringify(error, null, 2));
   res
     .status(StatusCodes.INTERNAL_SERVER_ERROR)
     .send({ errors: [{ message: "Something went wrong" }] });
