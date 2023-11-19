@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from "express";
-import { ApiError, ApiResponse } from "../types/Response";
 import { StatusCodes } from "http-status-codes";
+import { ApiResponse } from "../types/Response";
 import { CustomError } from "../util/errors";
 
 export const errorHandler = (
   error: Error,
   req: Request,
   res: Response,
-  next: NextFunction,
-) => {
+  next: NextFunction, // eslint-disable-line @typescript-eslint/no-unused-vars
+): void => {
   if (error instanceof CustomError) {
     const { statusCode, errors, logging } = error;
     if (logging) {
@@ -25,11 +25,15 @@ export const errorHandler = (
       );
     }
 
-    return res.status(statusCode).send({ errors });
+    const response: ApiResponse = {
+      errors: errors,
+    };
+
+    res.status(statusCode).send(response);
   }
 
   console.error(JSON.stringify(error, null, 2));
-  return res
+  res
     .status(StatusCodes.INTERNAL_SERVER_ERROR)
     .send({ errors: [{ message: "Something went wrong" }] });
 };

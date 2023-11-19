@@ -16,10 +16,14 @@ module.exports = {
     "prettier/prettier": ["error"],
   },
   settings: {
-      "import/resolver": {
-          node: {
-              extensions: [".js", ".ts"]
-          }
-      }
-  }
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".ts"],
+      },
+    },
+  },
+  env: {
+    node: true,
+    es2021: true
+  },
 };

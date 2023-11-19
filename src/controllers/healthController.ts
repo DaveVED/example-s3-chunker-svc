@@ -3,13 +3,13 @@ import { Request, Response, NextFunction } from "express";
 import { ApiResponse } from "../types/Response";
 import { status } from "../services/healthService";
 
-export const healthCheck = async (
+export const healthCheck = (
   req: Request,
   res: Response<ApiResponse>,
   next: NextFunction,
-): Promise<void> => {
+): void => {
   try {
-    const healthStatus = await status();
+    const healthStatus = status();
 
     const response: ApiResponse = {
       data: healthStatus,

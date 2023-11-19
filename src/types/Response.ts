@@ -2,13 +2,7 @@ import { HeatlhStatus } from "./Health";
 
 export interface ApiResponse {
   data?: ApiData[] | HeatlhStatus;
-  errors?: ApiError[];
-}
-
-export interface ApiError {
-  source?: { pointer: string };
-  title?: string;
-  detail: string;
+  errors?: CustomErrorContent[];
 }
 
 export interface ApiData {
@@ -18,5 +12,5 @@ export interface ApiData {
 
 export type CustomErrorContent = {
   message: string;
-  context?: { [key: string]: any };
+  context?: { [key: string]: string };
 };

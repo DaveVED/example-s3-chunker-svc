@@ -7,8 +7,8 @@
     "dev:server": "nodemon src/server.ts",
     "test": "jest --coverage",
     "prepare": "husky install",
-    "lint": "eslint --fix --ignore-path .gitignore --debug",
-    "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json|md)\""
+    "lint": "eslint --fix --ignore-path .eslintignore --ext .js,.ts .",
+    "prettier": "prettier --ignore-path .eslintignore --write \"**/*.+(js|ts|json|md)\""
   },
   "lint-staged": {
     "*ts": [

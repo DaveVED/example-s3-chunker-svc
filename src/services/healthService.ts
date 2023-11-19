@@ -1,7 +1,7 @@
 // healthService.ts
 import { HeatlhStatus } from "../types/Health";
 
-export const status = async (): Promise<HeatlhStatus> => {
+export const status = (): HeatlhStatus => {
   const healthStatus: HeatlhStatus = {
     status: "UP",
     version: "v1",

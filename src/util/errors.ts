@@ -17,13 +17,13 @@ export default class FormatedRequestError extends CustomError {
   private static readonly _statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
   private readonly _code: number;
   private readonly _logging: boolean;
-  private readonly _context: { [key: string]: any };
+  private readonly _context: { [key: string]: string };
 
   constructor(params?: {
     code?: number;
     message?: string;
     logging?: boolean;
-    context?: { [key: string]: any };
+    context?: { [key: string]: string };
   }) {
     const { code, message, logging } = params || {};
 
