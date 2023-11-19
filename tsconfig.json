@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "es2020",
+    "module": "commonjs",
+    "lib": ["es2020"],
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "indluce": ["src/**/*.ts", "jest.config.ts", ".eslintrc.js"],
+  "exclude": ["node_modules"]
+}
