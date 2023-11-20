@@ -18,25 +18,32 @@ export default class FormatedRequestError extends CustomError {
   private readonly _code: number;
   private readonly _logging: boolean;
   private readonly _context: { [key: string]: string };
+  private readonly _errors: CustomErrorContent[] = [];
 
   constructor(params?: {
     code?: number;
     message?: string;
     logging?: boolean;
     context?: { [key: string]: string };
+    errors?: CustomErrorContent[];
   }) {
-    const { code, message, logging } = params || {};
+    const { code, message, logging, errors } = params || {};
 
     super(message || "Internal Server Error.");
     this._code = code || FormatedRequestError._statusCode;
     this._logging = logging || false;
     this._context = params?.context || {};
+    this._errors = errors || [];
 
     Object.setPrototypeOf(this, FormatedRequestError.prototype);
   }
 
+  addError(message: string, context?: { [key: string]: string }) {
+    this._errors.push({ message, context });
+  }
+
   get errors() {
-    return [{ message: this.message, context: this._context }];
+    return this._errors;
   }
 
   get statusCode() {

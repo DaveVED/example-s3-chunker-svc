@@ -1,7 +1,5 @@
-import { HeatlhStatus } from "./Health";
-
-export interface ApiResponse {
-  data?: ApiData[] | HeatlhStatus;
+export interface ApiResponse<T> {
+  data?: T;
   errors?: CustomErrorContent[];
 }
 

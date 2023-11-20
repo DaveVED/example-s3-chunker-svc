@@ -3,16 +3,17 @@ import { Request, Response, NextFunction } from "express";
 import { ApiResponse } from "../types/Response";
 import { status } from "../services/healthService";
 import { logger } from "../util/logger";
+import { HeatlhStatus } from "../types/Health";
 
 export const healthCheck = (
   req: Request,
-  res: Response<ApiResponse>,
+  res: Response<ApiResponse<HeatlhStatus>>,
   next: NextFunction,
 ): void => {
   try {
     const healthStatus = status();
 
-    const response: ApiResponse = {
+    const response: ApiResponse<HeatlhStatus> = {
       data: healthStatus,
     };
 

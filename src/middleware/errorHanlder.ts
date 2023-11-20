@@ -26,7 +26,7 @@ export const errorHandler = (
       );
     }
 
-    const response: ApiResponse = {
+    const response: ApiResponse<void> = {
       errors: errors,
     };
 
