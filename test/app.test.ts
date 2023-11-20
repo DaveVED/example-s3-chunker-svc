@@ -6,7 +6,7 @@ import { ApiResponse, CustomErrorContent } from "../src/types/Response";
 import FormattedRequestError, { CustomError } from "../src/util/errors";
 import { HeatlhStatus } from "../src/types/Health";
 import fs from "fs";
-import { FileUplaodResult } from "../src/types/Files";
+import { FileUploadResult } from "../src/types/Files";
 
 describe("GET /api/v1/chunker/health", () => {
   const OLD_ENV = process.env;
@@ -125,12 +125,12 @@ describe("GET /api/v1/chunker/upload", () => {
     expect(response.status).toBe(200);
     expect(response).toHaveProperty("body");
 
-    const responseBody: ApiResponse<FileUplaodResult> =
-      response.body as ApiResponse<FileUplaodResult>;
+    const responseBody: ApiResponse<FileUploadResult> =
+      response.body as ApiResponse<FileUploadResult>;
     expect(responseBody).toHaveProperty("data");
 
-    const responseData: FileUplaodResult =
-      responseBody.data as FileUplaodResult;
+    const responseData: FileUploadResult =
+      responseBody.data as FileUploadResult;
     expect(responseData).toHaveProperty("eTag");
     expect(responseData.eTag).not.toBeNull();
     expect(responseData).toHaveProperty("versionId");
@@ -148,8 +148,8 @@ describe("GET /api/v1/chunker/upload", () => {
     expect(response.status).toBe(400);
     expect(response).toHaveProperty("body");
 
-    const responseBody: ApiResponse<FileUplaodResult> =
-      response.body as ApiResponse<FileUplaodResult>;
+    const responseBody: ApiResponse<FileUploadResult> =
+      response.body as ApiResponse<FileUploadResult>;
     expect(responseBody).toHaveProperty("errors");
 
     const responseErrors: CustomError[] = responseBody.errors as CustomError[];
@@ -172,16 +172,22 @@ describe("GET /api/v1/chunker/upload", () => {
     expect(response.status).toBe(400);
     expect(response).toHaveProperty("body");
 
-    const responseBody: ApiResponse<FileUplaodResult> =
-      response.body as ApiResponse<FileUplaodResult>;
+    const responseBody: ApiResponse<FileUploadResult> =
+      response.body as ApiResponse<FileUploadResult>;
     expect(responseBody).toHaveProperty("errors");
 
     const responseErrors: CustomError[] = responseBody.errors as CustomError[];
     expect(responseErrors).toHaveLength(2);
     expect(responseErrors).toEqual(
       expect.arrayContaining([
-        { message: "Invalid Request Input - {filePath} is required." },
-        { message: "Invalid Request Input - {user} is required." },
+        {
+          message:
+            "Invalid Request Input - {filePath} is required and must be a string.",
+        },
+        {
+          message:
+            "Invalid Request Input - {user} is required and must be a string.",
+        },
       ]),
     );
   });
@@ -197,15 +203,18 @@ describe("GET /api/v1/chunker/upload", () => {
     expect(response.status).toBe(400);
     expect(response).toHaveProperty("body");
 
-    const responseBody: ApiResponse<FileUplaodResult> =
-      response.body as ApiResponse<FileUplaodResult>;
+    const responseBody: ApiResponse<FileUploadResult> =
+      response.body as ApiResponse<FileUploadResult>;
     expect(responseBody).toHaveProperty("errors");
 
     const responseErrors: CustomError[] = responseBody.errors as CustomError[];
     expect(responseErrors).toHaveLength(1);
     expect(responseErrors).toEqual(
       expect.arrayContaining([
-        { message: "Invalid Request Input - {user} is required." },
+        {
+          message:
+            "Invalid Request Input - {user} is required and must be a string.",
+        },
       ]),
     );
   });
@@ -221,15 +230,18 @@ describe("GET /api/v1/chunker/upload", () => {
     expect(response.status).toBe(400);
     expect(response).toHaveProperty("body");
 
-    const responseBody: ApiResponse<FileUplaodResult> =
-      response.body as ApiResponse<FileUplaodResult>;
+    const responseBody: ApiResponse<FileUploadResult> =
+      response.body as ApiResponse<FileUploadResult>;
     expect(responseBody).toHaveProperty("errors");
 
     const responseErrors: CustomError[] = responseBody.errors as CustomError[];
     expect(responseErrors).toHaveLength(1);
     expect(responseErrors).toEqual(
       expect.arrayContaining([
-        { message: "Invalid Request Input - {filePath} is required." },
+        {
+          message:
+            "Invalid Request Input - {filePath} is required and must be a string.",
+        },
       ]),
     );
   });
@@ -240,16 +252,22 @@ describe("GET /api/v1/chunker/upload", () => {
     expect(response.status).toBe(400);
     expect(response).toHaveProperty("body");
 
-    const responseBody: ApiResponse<FileUplaodResult> =
-      response.body as ApiResponse<FileUplaodResult>;
+    const responseBody: ApiResponse<FileUploadResult> =
+      response.body as ApiResponse<FileUploadResult>;
     expect(responseBody).toHaveProperty("errors");
 
     const responseErrors: CustomError[] = responseBody.errors as CustomError[];
     expect(responseErrors).toHaveLength(3);
     expect(responseErrors).toEqual(
       expect.arrayContaining([
-        { message: "Invalid Request Input - {filePath} is required." },
-        { message: "Invalid Request Input - {user} is required." },
+        {
+          message:
+            "Invalid Request Input - {filePath} is required and must be a string.",
+        },
+        {
+          message:
+            "Invalid Request Input - {user} is required and must be a string.",
+        },
         { message: "Invalid Request Input - {file} is required." },
       ]),
     );
@@ -268,12 +286,12 @@ describe("GET /api/v1/chunker/upload", () => {
     expect(response.status).toBe(200);
     expect(response).toHaveProperty("body");
 
-    const responseBody: ApiResponse<FileUplaodResult> =
-      response.body as ApiResponse<FileUplaodResult>;
+    const responseBody: ApiResponse<FileUploadResult> =
+      response.body as ApiResponse<FileUploadResult>;
     expect(responseBody).toHaveProperty("data");
 
-    const responseData: FileUplaodResult =
-      responseBody.data as FileUplaodResult;
+    const responseData: FileUploadResult =
+      responseBody.data as FileUploadResult;
     expect(responseData).toHaveProperty("eTag");
     expect(responseData.eTag).not.toBeNull();
     expect(responseData).toHaveProperty("versionId");
@@ -295,12 +313,12 @@ describe("GET /api/v1/chunker/upload", () => {
     expect(response.status).toBe(200);
     expect(response).toHaveProperty("body");
 
-    const responseBody: ApiResponse<FileUplaodResult> =
-      response.body as ApiResponse<FileUplaodResult>;
+    const responseBody: ApiResponse<FileUploadResult> =
+      response.body as ApiResponse<FileUploadResult>;
     expect(responseBody).toHaveProperty("data");
 
-    const responseData: FileUplaodResult =
-      responseBody.data as FileUplaodResult;
+    const responseData: FileUploadResult =
+      responseBody.data as FileUploadResult;
     expect(responseData).toHaveProperty("eTag");
     expect(responseData.eTag).not.toBeNull();
     expect(responseData).toHaveProperty("versionId");
@@ -322,8 +340,8 @@ describe("GET /api/v1/chunker/upload", () => {
     expect(response.status).toBe(400);
     expect(response).toHaveProperty("body");
 
-    const responseBody: ApiResponse<FileUplaodResult> =
-      response.body as ApiResponse<FileUplaodResult>;
+    const responseBody: ApiResponse<FileUploadResult> =
+      response.body as ApiResponse<FileUploadResult>;
     expect(responseBody).toHaveProperty("errors");
 
     const responseErrors: CustomError[] = responseBody.errors as CustomError[];

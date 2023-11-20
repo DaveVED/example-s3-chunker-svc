@@ -10,7 +10,7 @@ import {
   UploadPartCommandInput,
   UploadPartCommandOutput,
 } from "@aws-sdk/client-s3";
-import { FileUplaodResult, FileUploadParts } from "../types/Files";
+import { FileUploadResult, FileUploadParts } from "../types/Files";
 
 export class FileStorage {
   private s3Client: S3Client;
@@ -105,7 +105,7 @@ export class FileStorage {
   public async createFile(
     fileData: Buffer,
     filePath: string,
-  ): Promise<FileUplaodResult> {
+  ): Promise<FileUploadResult> {
     const multipartUpload = await this.createMultipartUpload(filePath);
 
     if (!multipartUpload.Key || !multipartUpload.UploadId) {
@@ -123,7 +123,7 @@ export class FileStorage {
       );
     }
 
-    const fileResponse: FileUplaodResult = {
+    const fileResponse: FileUploadResult = {
       eTag: response.ETag,
       location: response.Location,
       versionId: response.VersionId,

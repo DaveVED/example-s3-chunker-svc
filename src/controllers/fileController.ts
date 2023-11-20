@@ -3,14 +3,14 @@ import { Request, Response, NextFunction } from "express";
 import { ApiResponse } from "../types/Response";
 import { logger } from "../util/logger";
 import { FileStorage } from "../services/fileStorageService";
-import { FileUplaodResult } from "../types/Files";
+import { FileUploadResult } from "../types/Files";
 import { validateFileStorageInput } from "../util/validators";
 
 const fileStorage = new FileStorage("dev-jot-jar-users");
 
 export const createFile = async (
   req: Request,
-  res: Response<ApiResponse<FileUplaodResult>>,
+  res: Response<ApiResponse<FileUploadResult>>,
   next: NextFunction,
 ): Promise<void> => {
   try {
@@ -18,7 +18,7 @@ export const createFile = async (
 
     const file = await fileStorage.createFile(buffer, formatedFilePath);
 
-    const response: ApiResponse<FileUplaodResult> = {
+    const response: ApiResponse<FileUploadResult> = {
       data: file,
     };
 

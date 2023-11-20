@@ -1,4 +1,4 @@
-export interface FileUplaodResult {
+export interface FileUploadResult {
   eTag: string;
   location: string;
   versionId: string;

@@ -3,8 +3,19 @@ import { StatusCodes } from "http-status-codes";
 import { ValidatedFileStorageInput } from "../types/Files";
 import FormattedRequestError from "./errors";
 
+interface CustomRequestBody {
+  user: string;
+  filePath: string;
+  // Add other properties as needed
+}
+
+interface CustomRequest extends Request {
+  body: CustomRequestBody;
+  file?: Express.Multer.File; // If you're using Multer for file uploads
+}
+
 export const validateFileStorageInput = (
-  req: Request,
+  req: CustomRequest,
 ): ValidatedFileStorageInput => {
   const errors: FormattedRequestError = new FormattedRequestError({
     logging: true,
@@ -16,13 +27,24 @@ export const validateFileStorageInput = (
   let originalName: string = "";
   let buffer: Buffer = Buffer.from([]);
 
-  req.file ?? errors.addError("Invalid Request Input - {file} is required.");
+  if (!req.file) {
+    errors.addError("Invalid Request Input - {file} is required.");
+  } else if (!(req.file.buffer instanceof Buffer)) {
+    // Assuming req.file has a buffer property
+    errors.addError("Invalid Request Input - {file} must be a Buffer.");
+  }
 
-  req.body.filePath ??
-    errors.addError("Invalid Request Input - {filePath} is required.");
+  if (typeof req.body.user !== "string") {
+    errors.addError(
+      "Invalid Request Input - {user} is required and must be a string.",
+    );
+  }
 
-  req.body.user ??
-    errors.addError("Invalid Request Input - {user} is required.");
+  if (typeof req.body.filePath !== "string") {
+    errors.addError(
+      "Invalid Request Input - {filePath} is required and must be a string.",
+    );
+  }
 
   if (
     req.file &&
@@ -31,7 +53,7 @@ export const validateFileStorageInput = (
     req.file.originalname &&
     req.file.buffer
   ) {
-    const filePath = req.body.filePath as string; // Explicit type assertion
+    const filePath = req.body.filePath; // Explicit type assertion
 
     user = req.body.user;
     originalName = req.file.originalname;
